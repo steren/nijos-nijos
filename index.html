@@ -21,25 +21,38 @@
 	</body>
 
 	<!-- <script type="text/javascript">
-		const current = {scale: 1, x: 0, y: 0};
-		const target = {scale: 10, x: 0, y: -500};
+		const origin = {scale: 1, x: 0, y: 0};
+		const target = {scale: 55, x: 314, y: -1080};
+
 		const durationSecond = 10;
 		const fps = 60;
 
-		document.getElementById('svg').addEventListener("load", (e) => {
-			const svg = e.target.contentDocument;		
+		// this doesn't work because click happens in the object, not on the body.
+		// to make it work, display a div on top of the object.
+		//document.body.addEventListener('mouseup', animate, true); 
+		
+		function animate() {
+			const svg = document.getElementById('svg').contentDocument;		
 			const frame = svg.getElementById("frame");
 			frame.style['transform-origin'] = "center";
-					
+
+			let counter = 0;
+
 			function zoom() {
-				current.scale	= current.scale + (target.scale / (durationSecond * fps));
-				current.x = current.x + (target.x / (durationSecond * fps));
-				current.y = current.y + (target.y / (durationSecond * fps));
-				console.log(current);
-				frame.style['transform'] = `scale(${current.scale}) translateX(${current.x}px) translateY(${current.y}px)`;
+				counter++;
+				if(counter > durationSecond * fps) return;
+
+				const ratio = counter / (durationSecond * fps);
+
+				const scale	= (target.scale - origin.scale) * ratio + origin.scale;
+				const x = (target.x - origin.x) * ratio + origin.x;
+				const y = (target.y - origin.y) * ratio + origin.y;
+
+				frame.style['transform'] = `scale(${scale}) translateX(${x}px) translateY(${y}px)`;
 			}
-			
 			window.setInterval(zoom, 1000 / fps);
-		});
+		};
+
+		document.getElementById('svg').addEventListener("load", animate)
 	</script> -->
 </html>
