@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nijos-Nijos</title>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-      }
-      object {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <object id="picture" data="nijos-nijos.svg" type="image/svg+xml"></object>
-  </body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Nijos-Nijos</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #000;
+			}
+			object {
+				width: 100%;
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<object id="svg" data="nijos-nijos.svg" type="image/svg+xml"></object>
+	</body>
+
+	<!-- <script type="text/javascript">
+		const current = {scale: 1, x: 0, y: 0};
+		const target = {scale: 10, x: 0, y: -500};
+		const durationSecond = 10;
+		const fps = 60;
+
+		document.getElementById('svg').addEventListener("load", (e) => {
+			const svg = e.target.contentDocument;		
+			const frame = svg.getElementById("frame");
+			frame.style['transform-origin'] = "center";
+					
+			function zoom() {
+				current.scale	= current.scale + (target.scale / (durationSecond * fps));
+				current.x = current.x + (target.x / (durationSecond * fps));
+				current.y = current.y + (target.y / (durationSecond * fps));
+				console.log(current);
+				frame.style['transform'] = `scale(${current.scale}) translateX(${current.x}px) translateY(${current.y}px)`;
+			}
+			
+			window.setInterval(zoom, 1000 / fps);
+		});
+	</script> -->
 </html>
