@@ -20,17 +20,18 @@
 		<object id="svg" data="nijos-nijos.svg" type="image/svg+xml"></object>
 	</body>
 
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		const origin = {scale: 1, x: 0, y: 0};
-		const target = {scale: 55, x: 314, y: -1080};
+		const target = {scale: 55, x: 312, y: -1080};
 
 		const durationSecond = 10;
 		const fps = 60;
 
-		// this doesn't work because click happens in the object, not on the body.
-		// to make it work, display a div on top of the object.
-		//document.body.addEventListener('mouseup', animate, true); 
-		
+		function bindClick() {
+			const svg = document.getElementById('svg').contentDocument;
+			const frame = svg.getElementById("frame");
+			frame.addEventListener('mouseup', animate, true);
+		}
 		function animate() {
 			const svg = document.getElementById('svg').contentDocument;		
 			const frame = svg.getElementById("frame");
@@ -44,15 +45,15 @@
 
 				const ratio = counter / (durationSecond * fps);
 
-				const scale	= (target.scale - origin.scale) * ratio + origin.scale;
-				const x = (target.x - origin.x) * ratio + origin.x;
-				const y = (target.y - origin.y) * ratio + origin.y;
+				const scale	= (target.scale - origin.scale) * ratio**3 + origin.scale;
+				const x = (target.x - origin.x) * ratio**(1/4) + origin.x;
+				const y = (target.y - origin.y) * ratio**(1/4) + origin.y;
 
 				frame.style['transform'] = `scale(${scale}) translateX(${x}px) translateY(${y}px)`;
 			}
 			window.setInterval(zoom, 1000 / fps);
 		};
 
-		document.getElementById('svg').addEventListener("load", animate)
-	</script> -->
+		document.getElementById('svg').addEventListener("load", bindClick)
+	</script>
 </html>
